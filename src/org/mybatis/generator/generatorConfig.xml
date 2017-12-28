@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- ojdbc6.jar已经直接放到项目中,无需指定了,同时mysql驱动包也一样,这里同样无需指定 -->
+	<!-- <classPathEntry location="ojdbc6.jar" /> -->
+	<context id="context1" targetRuntime="MyBatis3">
+		<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+		<!-- 这里的type里写的是你的实现类的类全路径 -->
+		<commentGenerator type="org.mybatis.generator.MyCommentGenerator">
+		</commentGenerator>
+
+
+
+		<!-- mysql配置 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.1.207:3306/garden?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false" userId="bt"
+			password="bt@123">
+
+			<property name="useInformationSchema" value="true"></property>
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		 <!-- 生成模型的包名和位置  wareic为项目名称 -->    
+        <javaModelGenerator targetPackage="com.yecai.system.user.Entity" targetProject="src" />    
+        <!-- 生成的映射文件报名和位置 -->    
+        <sqlMapGenerator targetPackage="src.test.java.mapper.user" targetProject="src" />    
+        <!-- 生成DAO的包名和位置 -->    
+        <javaClientGenerator targetPackage="com.yecai.system.user.Dao" targetProject="src" type="XMLMAPPER" />    
+        <!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->    
+
+
+		<!--不生成帮助类（Exmaples） -->
+		<!-- enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false" -->
+		<!--已生成的表 <table schema="demo" tableName="USER" domainObjectName="User"></table> -->
+		<table schema="" tableName="sys_userinfo" domainObjectName="User"
+		mapperName="UserDao"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+
+	</context>
+</generatorConfiguration>
+
