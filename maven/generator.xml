@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<!-- 把jar包放到当前目录下 -->
+<classPathEntry location="mysql-connector-java-5.1.43.jar" />
+<context id="jdbc">
+<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <commentGenerator  >
+      		 <property name="suppressAllComments" value="true"/>    
+        </commentGenerator> 
+<!-- 删除所有注释 
+<commentGenerator>
+<property name="suppressAllComments" value="true"/>
+</commentGenerator>
+-->
+<!-- jdbc配置 -->
+<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.207:3306/garden?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;useInformationSchema=true" userId="bt" password="bt@123">
+	  <!-- 针对mysql数据库 -->
+      <property name="useInformationSchema" value="true"></property>
+</jdbcConnection>
+<!-- 实体类 -->
+<javaModelGenerator targetPackage="com.yecai.Entity" targetProject=".">
+	<property name="enableSubPackages" value="true"/>
+    <property name="trimStrings" value="true"/>
+</javaModelGenerator>
+<!-- XML -->
+<sqlMapGenerator targetPackage="com.yecai.Mapping" targetProject=".">
+</sqlMapGenerator>
+<!-- 接口 -->
+<javaClientGenerator type="XMLMAPPER" targetPackage="com.yecai.Dao" targetProject=".">
+            <property name="enableSubPackages" value="true"/>
+</javaClientGenerator>
+<!-- tableName 为表名， domainObjectName为创建的实体类名称 多个table标签对应多个mode，mapper，xml -->
+<table tableName="sys_userinfo"     domainObjectName="User"
+	mapperName="UserDao" 
+enableCountByExample="false" enableDeleteByExample="false"
+enableSelectByExample="false" enableUpdateByExample="false"  
+selectByExampleQueryId="false">
+</table>
+ 
+</context>
+</generatorConfiguration>
